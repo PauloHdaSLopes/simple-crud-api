@@ -6,5 +6,5 @@ public class Person
     public string CPF { get; set; }
     public string Nome { get; set; }
     public DateTime Nascimento { get; set; }
-    public Decimal renda { get; set; }    
+    public Decimal Renda { get; set; }    
 }

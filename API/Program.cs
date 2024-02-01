@@ -1,4 +1,5 @@
 using API.Data;
+using API.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("Default"));
 }
 );
+
+builder.Services.AddScoped<IRepository<Person>, PersonRepository>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
