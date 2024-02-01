@@ -1,10 +1,10 @@
-namespace Namespace;
-public interface IRepository
+namespace API.Data;
+public interface IRepository<T> where T : class
 {
-    void Create<T>(T entity) where T:class;
-    Task<T> Read<T>(T entity) where T:class;
-    void Update<T>(T entity) where T:class;
-    void Delete<T>(T entity) where T:class;
+    void Create(T entity);
+    Task<List<T>> ReadAll();
+    Task<T> Read(int id);
+    void Update(T entity);
+    void Delete(T entity);
     Task<bool> saveAll();
-    
 }
