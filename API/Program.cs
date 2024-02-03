@@ -10,12 +10,13 @@ builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlite(builder.Configuration.GetConnectionString("Default"));
 }
 );
-
+builder.Services.AddCors();
 builder.Services.AddScoped<IRepository<Person>, PersonRepository>();
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
+app.UseCors(b => b.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000"));
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -17,7 +17,7 @@ public class PersonsController : ControllerBase
     }
 
     [HttpPost(Name = "AddPerson")]
-    public async Task<IActionResult> AddPerson([FromForm] Person person)
+    public async Task<IActionResult> AddPerson([FromBody] Person person)
     {   
         _repo.Create(person);
         await _repo.saveAll();
@@ -41,7 +41,7 @@ public class PersonsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdatePerson(int id, [FromForm] Person person)
+    public async Task<IActionResult> UpdatePerson(int id, [FromBody] Person person)
     {
         var personFromRepo = await _repo.Read(id);
 
@@ -49,7 +49,7 @@ public class PersonsController : ControllerBase
         personFromRepo.Nome = person.Nome;
         personFromRepo.Nascimento = person.Nascimento;
         personFromRepo.Renda = person.Renda;
-
+        
         if(await _repo.saveAll())
             return Ok();
 
